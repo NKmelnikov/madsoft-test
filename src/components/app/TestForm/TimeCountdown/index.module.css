@@ -1,0 +1,5 @@
+.container {
+  padding: var(--mp-web--spacing-1) var(--mp-web--spacing-4);
+  border: 1px solid black;
+  width: max-content;
+}

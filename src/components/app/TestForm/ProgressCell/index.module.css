@@ -1,0 +1,13 @@
+.container {
+  background-color: gray;
+  width: 28px;
+  height: 8px;
+}
+
+.active {
+  background-color: red;
+}
+
+.completed {
+  background-color: black;
+}
