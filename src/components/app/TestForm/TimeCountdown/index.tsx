@@ -20,9 +20,11 @@ const renderer = ({ minutes, seconds, completed }: rendererProps) => {
   }
 };
 export const TimeCountdown = () => {
+  const fifteenMinutes = 15 * 60 * 1000;
+
   return (
     <div className={styles["container"]}>
-      <Countdown date={Date.now() + 900000} renderer={renderer} />
+      <Countdown date={Date.now() + fifteenMinutes} renderer={renderer} />
     </div>
   );
 };

@@ -1,7 +1,7 @@
-import { Button, Heading } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import styles from "./index.module.css";
-import { TimeCountdown } from "./TestForm/TimeCountdown";
 import { TestForm } from "./TestForm";
+import { TimeCountdown } from "./TestForm/TimeCountdown";
 
 export const App = () => {
   return (
@@ -13,10 +13,6 @@ export const App = () => {
         <TimeCountdown />
       </div>
       <TestForm />
-
-      <Button colorScheme="teal" variant="solid">
-        Button
-      </Button>
     </div>
   );
 };

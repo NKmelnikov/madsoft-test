@@ -1,5 +1,14 @@
 .container {
-  width: 500px;
-  height: 500px;
-  border: 1px solid black;
+  max-width: 800px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-2);
+  margin-top: auto;
 }
