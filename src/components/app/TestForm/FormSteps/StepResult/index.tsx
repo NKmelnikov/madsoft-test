@@ -12,13 +12,11 @@ import {
 } from "@chakra-ui/react";
 import styles from "./index.module.css";
 import { useFormContext } from "react-hook-form";
-import { firstQuestion } from "../../../../../entities/testForm/model";
+import { FormStepsData } from "../../../../../entities/testForm/models/steps";
 
 export const StepResult = () => {
   const { getValues } = useFormContext();
-  const answer1 = getValues("question-1") as keyof typeof firstQuestion;
-  const answer2 = getValues("question-2");
-  const answer3 = getValues("question-3");
+  const formValues = getValues();
 
   return (
     <div className={styles["container"]}>
@@ -36,18 +34,26 @@ export const StepResult = () => {
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>Что должен знать фронт-енд разработчик?</Td>
-              <Td>{firstQuestion[answer1]}</Td>
-            </Tr>
-            <Tr>
-              <Td>Напишите название любимого языка программирования</Td>
-              <Td>{answer2}</Td>
-            </Tr>
-            <Tr>
-              <Td>Сколько типов данных в языке JavaScript?</Td>
-              <Td isNumeric>{answer3}</Td>
-            </Tr>
+            {Object.entries(FormStepsData).map(([stepKey, stepData]) => (
+              <Tr key={stepKey}>
+                <Td>{stepData.label}</Td>
+                <Td>
+                  {stepData.data
+                    ? (() => {
+                        const answer = formValues[stepData.name];
+                        console.log("answer", answer);
+                        if (stepData.type === "single") {
+                          return stepData.data[answer] ?? "Неизвестный ответ";
+                        } else if (stepData.type === "multiple") {
+                          return answer?.join(" ") ?? "Неизвестный ответ";
+                        }
+
+                        return "Ответ не предоставлен";
+                      })()
+                    : formValues[stepData.name] || "Не предоставлен"}
+                </Td>
+              </Tr>
+            ))}
           </Tbody>
         </Table>
       </TableContainer>

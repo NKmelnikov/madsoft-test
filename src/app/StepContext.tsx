@@ -1,5 +1,6 @@
 import { createContext, useCallback, useMemo, useState } from "react";
-import { FormSteps } from "../entities/testForm/model";
+import { FormSteps } from "../entities/testForm/models/steps";
+
 
 type StepType = keyof typeof FormSteps;
 

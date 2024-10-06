@@ -1,5 +1,5 @@
 import styles from "./index.module.css";
-import { FormSteps } from "../../../../entities/testForm/model";
+import { FormSteps } from "../../../../entities/testForm/models/steps";
 import { ProgressCell } from "./ProgressCell";
 import { useStepper } from "../../../../app/use-stepper";
 
