@@ -1,6 +1,6 @@
 import Countdown from "react-countdown";
+import { useStepper } from "../../../app/use-stepper";
 import styles from "./index.module.css";
-import { useStepper } from "../../../../app/use-stepper";
 
 type rendererProps = {
   minutes: number;

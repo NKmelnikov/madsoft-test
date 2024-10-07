@@ -14,6 +14,5 @@ src/components/App/TestForm/TimeCountdown
 
 - реализовать тестовые запросы к серверу с мок данными
 - улучшить модель данных src/entities/testForm/models/steps.ts
-- сохранить в sessionStorage шаг на котором пользователь остановился.
 
-Затраченное время ~4ч
+Затраченное время ~5ч

@@ -1,23 +1,24 @@
 import { Button } from "@chakra-ui/react";
+import { useEffect } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import { useStepper } from "../../../app/use-stepper";
 import {
+  FormData,
   formDefaultValues,
   FormSteps,
-  FormData,
+  sessionStorageFormDataKey,
 } from "../../../entities/testForm/models/steps";
+import {
+  loadFromSessionStorage,
+  saveToSessionStorage,
+} from "../../../utils/storage";
+import { StepFour } from "./FormSteps/StepFour";
 import { StepOne } from "./FormSteps/StepOne";
 import { StepResult } from "./FormSteps/StepResult";
 import { StepThree } from "./FormSteps/StepThree";
 import { StepTwo } from "./FormSteps/StepTwo";
 import styles from "./index.module.css";
 import { ProgressCellBar } from "./ProgressCellBar";
-import { FormProvider, useForm } from "react-hook-form";
-import { StepFour } from "./FormSteps/StepFour";
-import {
-  loadFromSessionStorage,
-  saveToSessionStorage,
-} from "../../../utils/storage";
-import { useEffect } from "react";
 
 const formStepComponents = {
   [FormSteps.StepOne]: StepOne,
@@ -27,25 +28,28 @@ const formStepComponents = {
   [FormSteps.StepResult]: StepResult,
 };
 
+const sessionSavedFormData = loadFromSessionStorage<FormData>(
+  sessionStorageFormDataKey,
+);
+
 export const TestForm = () => {
-  const savedFormData = loadFromSessionStorage<FormData>("testFormData");
+  const { currentStep, goPrevStep } = useStepper();
 
   const methods = useForm({
-    defaultValues: savedFormData || formDefaultValues,
+    defaultValues: sessionSavedFormData || formDefaultValues,
   });
-
-  const { currentStep, goPrevStep } = useStepper();
-  const StepComponent = formStepComponents[currentStep];
 
   const isSubmitButtonVisible = currentStep !== FormSteps.StepResult;
   const isBackButtonVisible = currentStep !== FormSteps.StepOne;
 
   useEffect(() => {
     const subscription = methods.watch((value) => {
-      saveToSessionStorage("testFormData", value);
+      saveToSessionStorage(sessionStorageFormDataKey, value);
     });
     return () => subscription.unsubscribe();
   }, [methods]);
+
+  const StepComponent = formStepComponents[currentStep];
 
   return (
     <FormProvider {...methods}>

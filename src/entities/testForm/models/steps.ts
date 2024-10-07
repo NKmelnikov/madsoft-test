@@ -62,3 +62,6 @@ export type FormData = {
   "question-3": string | undefined;
   "question-4": string[] | undefined;
 };
+
+export const sessionStorageFormDataKey = "testFormData";
+export const sessionStorageCurrentStepKey = "currentStep";
