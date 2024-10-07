@@ -6,7 +6,7 @@ export const StepFour = () => {
     <MultipleVariantQuestion
       name={FormStepsData.StepFour.name}
       label={FormStepsData.StepFour.label}
-      questions={FormStepsData.StepFour.data}
+      questions={FormStepsData.StepFour.data!}
     />
   );
 };

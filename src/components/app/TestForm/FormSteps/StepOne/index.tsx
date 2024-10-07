@@ -6,7 +6,7 @@ export const StepOne = () => {
     <SingleVariantQuestion
       name={FormStepsData.StepOne.name}
       label={FormStepsData.StepOne.label}
-      questions={FormStepsData.StepOne.data}
+      questions={FormStepsData.StepOne.data!}
     />
   );
 };

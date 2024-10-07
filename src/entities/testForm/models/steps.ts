@@ -6,7 +6,18 @@ export const FormSteps = {
   StepResult: "StepResult",
 } as const;
 
-export const FormStepsData = {
+type FormSteps = (typeof FormSteps)[keyof typeof FormSteps];
+
+type StepKey = Exclude<FormSteps, "StepResult">;
+
+type StepData = {
+  label: string;
+  name: string;
+  type?: "single" | "multiple";
+  data?: Record<string, string>;
+};
+
+export const FormStepsData: Record<StepKey, StepData> = {
   StepOne: {
     label: "Что должен знать фронт-енд разработчик?",
     name: "question-1",

@@ -19,9 +19,10 @@ const formStepComponents = {
 };
 
 export const TestForm = () => {
+  const methods = useForm();
   const { currentStep, goPrevStep } = useStepper();
   const StepComponent = formStepComponents[currentStep];
-  const methods = useForm();
+
   const isSubmitButtonVisible = currentStep !== FormSteps.StepResult;
   const isBackButtonVisible = currentStep !== FormSteps.StepOne;
 
@@ -36,7 +37,7 @@ export const TestForm = () => {
             <Button
               colorScheme="gray"
               variant="solid"
-              size={"sm"}
+              size="sm"
               onClick={goPrevStep}
             >
               Назад
@@ -47,7 +48,7 @@ export const TestForm = () => {
             <Button
               colorScheme="red"
               variant="solid"
-              size={"sm"}
+              size="sm"
               type="submit"
               form="question-form"
             >

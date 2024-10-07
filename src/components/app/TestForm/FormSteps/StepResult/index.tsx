@@ -41,7 +41,6 @@ export const StepResult = () => {
                   {stepData.data
                     ? (() => {
                         const answer = formValues[stepData.name];
-                        console.log("answer", answer);
                         if (stepData.type === "single") {
                           return stepData.data[answer] ?? "Неизвестный ответ";
                         } else if (stepData.type === "multiple") {
