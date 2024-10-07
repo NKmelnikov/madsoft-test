@@ -6,9 +6,9 @@ export const FormSteps = {
   StepResult: "StepResult",
 } as const;
 
-type FormSteps = (typeof FormSteps)[keyof typeof FormSteps];
+export type FormSteps = (typeof FormSteps)[keyof typeof FormSteps];
 
-type StepKey = Exclude<FormSteps, "StepResult">;
+export type StepKey = Exclude<FormSteps, "StepResult">;
 
 type StepData = {
   label: string;
@@ -48,3 +48,17 @@ export const FormStepsData: Record<StepKey, StepData> = {
     },
   },
 } as const;
+
+export const formDefaultValues = {
+  "question-1": undefined,
+  "question-2": undefined,
+  "question-3": undefined,
+  "question-4": undefined,
+};
+
+export type FormData = {
+  "question-1": string | undefined;
+  "question-2": string | undefined;
+  "question-3": string | undefined;
+  "question-4": string[] | undefined;
+};

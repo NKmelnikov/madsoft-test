@@ -1,5 +1,6 @@
 import Countdown from "react-countdown";
 import styles from "./index.module.css";
+import { useStepper } from "../../../../app/use-stepper";
 
 type rendererProps = {
   minutes: number;
@@ -20,11 +21,21 @@ const renderer = ({ minutes, seconds, completed }: rendererProps) => {
   }
 };
 export const TimeCountdown = () => {
+  const { setIsTimeOver } = useStepper();
+  const handleComplete = () => {
+    setIsTimeOver(true);
+  };
+
   const fifteenMinutes = 15 * 60 * 1000;
+  const timeLeft = Date.now() + fifteenMinutes;
 
   return (
     <div className={styles["container"]}>
-      <Countdown date={Date.now() + fifteenMinutes} renderer={renderer} />
+      <Countdown
+        date={timeLeft}
+        renderer={renderer}
+        onComplete={handleComplete}
+      />
     </div>
   );
 };
